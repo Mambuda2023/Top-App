@@ -1,28 +1,13 @@
-:root {
-	--black: #3b434e;
-	--white: white;
-	--primary: #7653fc;
-	--red: #fc8360;
-	--green: #1dc37e;
-	--green-light: #c8ffe4;
-	--font-family: 'Noto Sans KR', sans-serif;
-}
-
-html,
-body {
-	background: #f5f6f8;
-	font-family: var(--font-family);
-}
-
 /* Reset and base styles  */
+* {
+	border: none;
+	margin: 0 auto;
+}
 
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
-	border: none;
-	margin: 0 auto;
-	color: var(--black);
 }
 
 /* Links */
@@ -30,6 +15,10 @@ body {
 a,
 a:link,
 a:visited {
+	text-decoration: none;
+}
+
+a:hover {
 	text-decoration: none;
 }
 
@@ -58,6 +47,16 @@ p {
 ul,
 ul li {
 	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
 }
 
 address {
