@@ -1,6 +1,7 @@
+import { Button, HTag, Paragraph, Rating, Tag } from '@/shared/UI/index'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Head from 'next/head'
-
+import { useState } from 'react'
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -12,6 +13,7 @@ const geistMono = Geist_Mono({
 })
 
 export default function Home() {
+	const [rating, setRating] = useState<number>(4)
 	return (
 		<>
 			<Head>
@@ -24,7 +26,25 @@ export default function Home() {
 					href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wgth@300;400;500;700&display=swap'
 				/>
 			</Head>
-			<div>Привет мир</div>
+			<div>
+				<HTag tag='h1'>Я заголовок первого уровня</HTag>
+				<HTag tag='h2'>Я заголовок второго уровня</HTag>
+				<HTag tag='h3'>Я заголовок третьего уровня</HTag>
+				<Button appearance={'primary'}>Я кнопка primary</Button>
+				<Button appearance={'ghost'}>Я кнопка ghost</Button>
+				<Paragraph size='l'>Низкий параграф</Paragraph>
+				<Paragraph size='m'>Средний параграф</Paragraph>
+				<Paragraph size='h'>Высокий параграф</Paragraph>
+				<Tag size='s'>Ghost</Tag>
+				<Tag size='m' color='red'>
+					Red
+				</Tag>
+				<Tag size='s' color='green'>
+					Green
+				</Tag>
+				<Tag color='primary'>Привет мир</Tag>
+				<Rating rating={rating} isEditable={true} setRating={setRating} />
+			</div>
 		</>
 	)
 }
