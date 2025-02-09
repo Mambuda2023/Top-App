@@ -23,7 +23,6 @@ body {
 *::after {
 	box-sizing: border-box;
 	border: none;
-	margin: 0 auto;
 	color: var(--black);
 }
 

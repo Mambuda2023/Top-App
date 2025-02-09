@@ -1,3 +1,4 @@
+import { withLayout } from '@/shared/helpers/HOC/withLayout'
 import { Button, HTag, Paragraph, Rating, Tag } from '@/shared/UI/index'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Head from 'next/head'
@@ -12,7 +13,7 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 })
 
-export default function Home() {
+function Home() {
 	const [rating, setRating] = useState<number>(4)
 	return (
 		<>
@@ -26,7 +27,7 @@ export default function Home() {
 					href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wgth@300;400;500;700&display=swap'
 				/>
 			</Head>
-			<div>
+			<>
 				<HTag tag='h1'>Я заголовок первого уровня</HTag>
 				<HTag tag='h2'>Я заголовок второго уровня</HTag>
 				<HTag tag='h3'>Я заголовок третьего уровня</HTag>
@@ -44,7 +45,9 @@ export default function Home() {
 				</Tag>
 				<Tag color='primary'>Привет мир</Tag>
 				<Rating rating={rating} isEditable={true} setRating={setRating} />
-			</div>
+			</>
 		</>
 	)
 }
+
+export default withLayout(Home)
