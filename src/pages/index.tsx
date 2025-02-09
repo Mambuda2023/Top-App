@@ -1,8 +1,11 @@
+import { HomeProps, MenuItem } from '@/app/interfaces/menu.Interface'
 import { withLayout } from '@/shared/helpers/HOC/withLayout'
-import { Button, HTag, Paragraph, Rating, Tag } from '@/shared/UI/index'
+import axios from 'axios'
+import { GetStaticProps } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Head from 'next/head'
-import { useState } from 'react'
+import { JSX, useState } from 'react'
+
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -13,7 +16,7 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 })
 
-function Home() {
+function Home({ menu }: HomeProps): JSX.Element {
 	const [rating, setRating] = useState<number>(4)
 	return (
 		<>
@@ -28,26 +31,25 @@ function Home() {
 				/>
 			</Head>
 			<>
-				<HTag tag='h1'>Я заголовок первого уровня</HTag>
-				<HTag tag='h2'>Я заголовок второго уровня</HTag>
-				<HTag tag='h3'>Я заголовок третьего уровня</HTag>
-				<Button appearance={'primary'}>Я кнопка primary</Button>
-				<Button appearance={'ghost'}>Я кнопка ghost</Button>
-				<Paragraph size='l'>Низкий параграф</Paragraph>
-				<Paragraph size='m'>Средний параграф</Paragraph>
-				<Paragraph size='h'>Высокий параграф</Paragraph>
-				<Tag size='s'>Ghost</Tag>
-				<Tag size='m' color='red'>
-					Red
-				</Tag>
-				<Tag size='s' color='green'>
-					Green
-				</Tag>
-				<Tag color='primary'>Привет мир</Tag>
-				<Rating rating={rating} isEditable={true} setRating={setRating} />
+				<ul>
+					{menu.map(m => (
+						<li key={m._id.secondCategory}>{m._id.secondCategory}</li>
+					))}
+				</ul>
 			</>
 		</>
 	)
 }
 
 export default withLayout(Home)
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+	const firstCategory = 0
+	const { data: menu } = await axios.post<MenuItem[]>(
+		process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
+		{ firstCategory }
+	)
+	return {
+		props: { menu, firstCategory },
+	}
+}
