@@ -1,0 +1,15 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-property-sort-order-smacss",
+		"stylelint-scss"
+	],
+	"plugins": [
+		"stylelint-order"
+	],
+	"rules": {
+		"color-hex-alpha": "never"
+	}
+}
+
+
